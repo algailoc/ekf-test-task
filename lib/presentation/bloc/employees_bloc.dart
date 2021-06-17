@@ -41,6 +41,7 @@ class EmployeesBloc extends Bloc<EmployeesEvent, EmployeesState> {
         children: [],
       ));
       employeesList.add(result);
+      print(employeesList);
       yield EmployeesLoadedState(employeesList: employeesList);
     } else if (event is AddChildEvent) {
       final result = await addChildUsecase(

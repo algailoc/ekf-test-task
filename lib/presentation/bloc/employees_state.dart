@@ -1,7 +1,11 @@
 part of 'employees_bloc.dart';
 
 @immutable
-abstract class EmployeesState {}
+abstract class EmployeesState {
+  final List<Employee> employeesList;
+
+  EmployeesState({this.employeesList});
+}
 
 class EmployeesInitial extends EmployeesState {
   final List<Employee> employeesList;
