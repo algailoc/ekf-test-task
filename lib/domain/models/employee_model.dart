@@ -25,10 +25,10 @@ class EmployeeModel extends Employee {
     List<Child> children = [];
     json['children'].forEach((el) {
       children.add(Child(
-          surname: json['surname'],
-          name: json['name'],
-          patronym: json['patronym'],
-          birthday: json['birthday']));
+          surname: el['surname'],
+          name: el['name'],
+          patronym: el['patronym'],
+          birthday: el['birthday']));
     });
 
     return EmployeeModel(
@@ -47,10 +47,10 @@ class EmployeeModel extends Employee {
 
     children.forEach((element) {
       childrenJson.add({
-        "surname": surname,
-        "name": name,
-        "patronym": patronym,
-        "birthday": birthday,
+        "surname": element.surname,
+        "name": element.name,
+        "patronym": element.patronym,
+        "birthday": element.birthday,
       });
     });
 
@@ -60,7 +60,8 @@ class EmployeeModel extends Employee {
       "patronym": patronym,
       "birthday": birthday,
       "position": position,
-      'children': childrenJson
+      'children': childrenJson,
+      'id': id,
     };
   }
 }

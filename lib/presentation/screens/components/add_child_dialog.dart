@@ -1,22 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class AddEmployeeDialog extends StatefulWidget {
-  final Function addEmployeePressHandler;
-  const AddEmployeeDialog({Key key, @required this.addEmployeePressHandler})
+class AddChildDialog extends StatefulWidget {
+  final Function addChildHandler;
+
+  const AddChildDialog({Key key, @required this.addChildHandler})
       : super(key: key);
 
   @override
-  _AddEmployeeDialogState createState() => _AddEmployeeDialogState();
+  _AddChildDialogState createState() => _AddChildDialogState();
 }
 
-class _AddEmployeeDialogState extends State<AddEmployeeDialog> {
+class _AddChildDialogState extends State<AddChildDialog> {
   String name = '';
   String surname = '';
   String patronym = '';
   String birthday = '';
-  String position = '';
-
   DateTime selectedDate = DateTime.now();
 
   bool fieldsValid = true;
@@ -44,14 +43,12 @@ class _AddEmployeeDialogState extends State<AddEmployeeDialog> {
     if (name.trim().length == 0 ||
         surname.trim().length == 0 ||
         patronym.trim().length == 0 ||
-        position.trim().length == 0 ||
         birthday.trim().length == 0) {
       setState(() {
         fieldsValid = false;
       });
     } else {
-      widget.addEmployeePressHandler(
-          context, name, surname, patronym, birthday, position);
+      widget.addChildHandler(context, name, surname, patronym, birthday);
     }
   }
 
@@ -99,15 +96,6 @@ class _AddEmployeeDialogState extends State<AddEmployeeDialog> {
                   onPressed: () => _selectDate(context),
                   child: Text('Выбрать дату рождения')),
             ),
-            TextField(
-              decoration: InputDecoration(hintText: 'Должность'),
-              onChanged: (value) {
-                setState(() {
-                  fieldsValid = true;
-                  position = value;
-                });
-              },
-            ),
             !fieldsValid
                 ? Padding(
                     padding: const EdgeInsets.only(top: 20),
@@ -126,7 +114,7 @@ class _AddEmployeeDialogState extends State<AddEmployeeDialog> {
               onPressed: () => submitHandler(context),
               child: Container(
                 width: double.infinity,
-                child: Text('Добавить сотрудника'),
+                child: Text('Добавить ребенка'),
               ),
             ),
           ],

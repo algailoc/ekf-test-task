@@ -37,11 +37,10 @@ class EmployeesBloc extends Bloc<EmployeesEvent, EmployeesState> {
         patronym: event.patronym,
         birthday: event.birthday,
         position: event.position,
-        id: '$Random()${event.surname[0]}${event.name[0]}${event.patronym[0]}',
+        id: '${Random().nextInt(100)}${event.surname[0]}${event.name[0]}${event.patronym[0]}',
         children: [],
       ));
       employeesList.add(result);
-      print(employeesList);
       yield EmployeesLoadedState(employeesList: employeesList);
     } else if (event is AddChildEvent) {
       final result = await addChildUsecase(

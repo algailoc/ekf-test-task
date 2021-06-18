@@ -40,8 +40,8 @@ class _MyAppState extends State<MyApp> {
         create: (context) => employeesBloc,
         child: MaterialApp(
             theme: ThemeData(
-              primaryColor: Colors.amber,
-            ),
+                // primaryColor: Colors.amber,
+                ),
             title: 'Test employees app',
             home: Scaffold(
               appBar: AppBar(

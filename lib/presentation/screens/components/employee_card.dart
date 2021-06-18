@@ -5,27 +5,31 @@ import 'package:flutter/material.dart';
 
 class EmployeeCard extends StatelessWidget {
   final Employee employee;
+  final bool touchable;
+
   final TextStyle textStyle = TextStyle(
     fontSize: 16,
     color: Colors.white,
   );
 
-  EmployeeCard({Key key, @required this.employee}) : super(key: key);
+  EmployeeCard({Key key, @required this.employee, this.touchable = true})
+      : super(key: key);
 
   void cardPressHandler(BuildContext context) {
     Navigator.push(
       context,
       MaterialPageRoute(
-          builder: (context) => EmployeeScreen(
-                employee: employee,
-              )),
+        builder: (context) => EmployeeScreen(
+          employee: employee,
+        ),
+      ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => cardPressHandler(context),
+      onTap: touchable ? () => cardPressHandler(context) : null,
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
@@ -56,7 +60,7 @@ class EmployeeCard extends StatelessWidget {
               ],
             ),
             Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.end,
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Text(
@@ -68,7 +72,10 @@ class EmployeeCard extends StatelessWidget {
                   style: textStyle,
                 ),
                 employee.children.length > 0
-                    ? Text('Дети: ${employee.children.length}')
+                    ? Text(
+                        'Дети: ${employee.children.length}',
+                        style: textStyle,
+                      )
                     : Container()
               ],
             ),
